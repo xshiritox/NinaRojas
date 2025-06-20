@@ -134,14 +134,14 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { collection, onSnapshot, query, orderBy, doc, setDoc, deleteDoc, writeBatch } from 'firebase/firestore'
+import { collection, onSnapshot, query, orderBy, doc, deleteDoc, writeBatch } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { 
   Save, LogOut, Plus, Trash2, 
   Briefcase, Music 
 } from 'lucide-vue-next'
 import { useAuth } from '../composables/useAuth'
-import { useContent, type Service, type AudioDemo } from '../composables/useContent'
+import type { Service, AudioDemo } from '../composables/useContent'
 import { useRouter } from 'vue-router'
 
 const { logout, isAuthenticated, initAuth } = useAuth()
@@ -252,7 +252,10 @@ const loadRealtimeData = () => {
   unsubscribeServices = onSnapshot(qServices, (snapshot) => {
     services.value = snapshot.docs.map(doc => ({
       id: doc.id,
-      ...doc.data()
+      title: doc.data().title || '',
+      description: doc.data().description || '',
+      price: doc.data().price || '',
+      featured: doc.data().featured || false
     }))
   })
 
@@ -261,7 +264,10 @@ const loadRealtimeData = () => {
   unsubscribePortfolio = onSnapshot(qPortfolio, (snapshot) => {
     audioDemos.value = snapshot.docs.map(doc => ({
       id: doc.id,
-      ...doc.data()
+      title: doc.data().title || '',
+      description: doc.data().description || '',
+      audioUrl: doc.data().audioUrl || '',
+      category: doc.data().category || ''
     }))
   })
 }
