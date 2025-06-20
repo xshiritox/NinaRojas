@@ -1,0 +1,67 @@
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import Toast, { POSITION } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+import './style.css'
+import App from './App.vue'
+import Home from './views/Home.vue'
+import Admin from './views/Admin.vue'
+import AdminLogin from './views/AdminLogin.vue'
+import { auth } from './firebase/config'
+// onAuthStateChanged se usa implícitamente en auth.onAuthStateChanged
+
+const routes = [
+  { path: '/', component: Home },
+  { path: '/admin', component: Admin, meta: { requiresAuth: true } },
+  { path: '/admin/login', component: AdminLogin }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+const app = createApp(App)
+
+// Inicializar Firebase
+auth.onAuthStateChanged(() => {
+  // Usuario autenticado o no
+  console.log('Estado de autenticación actualizado')
+})
+
+// Protección de rutas
+router.beforeEach(async (to, _from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const currentUser = auth.currentUser
+
+  // Si el usuario ya está autenticado y va a la página de login
+  if (to.path === '/admin/login' && currentUser) {
+    next('/admin')
+    return
+  }
+
+  // Si la ruta requiere autenticación y el usuario no está autenticado
+  if (requiresAuth && !currentUser) {
+    next('/admin/login')
+    return
+  }
+
+  // En cualquier otro caso, continuar con la navegación
+  next()
+})
+
+app.use(router)
+// Configuración de notificaciones
+app.use(Toast, {
+  position: POSITION.TOP_RIGHT,
+  timeout: 5000,
+  closeOnClick: true,
+  pauseOnHover: true,
+  // Deshabilitar notificaciones de éxito
+  filterBeforeCreate: (toast: any) => {
+    // Solo mostrar notificaciones de error
+    return toast.type === 'error' ? toast : false;
+  }
+})
+
+app.mount('#app')
