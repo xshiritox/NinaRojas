@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import { createRouter, createWebHistory } from 'vue-router'
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
@@ -22,7 +23,10 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+const pinia = createPinia()
 
+app.use(pinia)
+app.use(router)
 // Inicializar Firebase
 auth.onAuthStateChanged(() => {
   // Usuario autenticado o no
