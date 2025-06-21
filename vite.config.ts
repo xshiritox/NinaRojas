@@ -39,10 +39,21 @@ export default defineConfig({
         },
         entryFileNames: 'assets/js/[name]-[hash].js',
         chunkFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash][ext]'
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[ext]/[name]-[hash][ext]';
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (ext === 'css') {
+            return 'assets/css/[name]-[hash][extname]';
+          }
+          return 'assets/[ext]/[name]-[hash][ext]';
+        }
       }
     },
     sourcemap: false,
     minify: 'terser',
+    cssCodeSplit: true,
+    cssTarget: 'esnext',
+    cssMinify: true
   }
 })
