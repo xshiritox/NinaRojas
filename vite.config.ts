@@ -28,11 +28,21 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+      },
+      output: {
+        manualChunks: {
+          'vue': ['vue', 'vue-router', 'pinia'],
+          'firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore']
+        },
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash][ext]'
       }
-    }
+    },
+    sourcemap: false,
+    minify: 'terser',
   }
 })
