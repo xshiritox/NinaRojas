@@ -101,11 +101,11 @@
                   <div class="form-group">
                     <label>Categoría</label>
                     <select v-model="demo.category">
-                      <option value="Comerciales">Comerciales</option>
-                      <option value="Documentales">Documentales</option>
-                      <option value="E-learning">E-learning</option>
-                      <option value="Audiolibros">Audiolibros</option>
-                      <option value="Corporativo">Corporativo</option>
+                      <option value="Comercial">Comercial</option>
+                      <option value="Prescriptiva">Prescriptiva</option>
+                      <option value="Informativa">Informativa</option>
+                      <option value="Institucional">Institucional</option>
+                      <option value="Emotiva">Emotiva</option>
                     </select>
                   </div>
                 </div>
