@@ -9,6 +9,9 @@ import Home from './views/Home.vue'
 import Admin from './views/Admin.vue'
 import AdminLogin from './views/AdminLogin.vue'
 import { auth } from './firebase/config'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 // onAuthStateChanged se usa implícitamente en auth.onAuthStateChanged
 
 const routes = [
@@ -20,6 +23,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// Inicializar AOS
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out',
+  once: true,
+  mirror: false
 })
 
 const app = createApp(App)

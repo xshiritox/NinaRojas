@@ -43,11 +43,11 @@
       <div class="hero-background"></div>
       <div class="container">
         <div class="hero-content">
-          <div class="hero-logo">
+          <div class="hero-logo" data-aos="fade-down" data-aos-delay="100">
             <img src="/logo.png" alt="Nina Rojas - Locutora Profesional" class="hero-logo-img" loading="lazy" />
           </div>
-          <div class="hero-title">
-            <h2 class="highlight">Nina Rojas</h2>
+          <div class="hero-title" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="highlight" data-aos="fade-up" data-aos-delay="300">Nina Rojas</h2>
             <p class="subtitle">Locución Profesional de Alto Impacto</p>
           </div>
           <p class="hero-description">
@@ -89,14 +89,20 @@
     <!-- Servicios -->
     <section id="servicios" class="services section-padding">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Servicios</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">Soluciones profesionales de voz para cada necesidad</p>
+          <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Soluciones profesionales de voz para cada necesidad</p>
         </div>
         <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.id">
-            <div class="service-icon">
+          <div 
+            class="service-card" 
+            v-for="(service, index) in services" 
+            :key="service.id"
+            data-aos="fade-up"
+            :data-aos-delay="200 + (index * 100)"
+          >
+            <div class="service-icon" data-aos="zoom-in" :data-aos-delay="300 + (index * 100)">
               <component :is="getServiceIcon(service.title)" />
             </div>
             <h3>{{ service.title }}</h3>
@@ -111,27 +117,31 @@
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio section-padding">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Portfolio</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">Escucha algunos de mis trabajos más destacados</p>
+          <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Escucha algunos de mis trabajos más destacados</p>
         </div>
-        <div class="portfolio-tabs">
+        <div class="portfolio-tabs" data-aos="fade-up" data-aos-delay="200">
           <button 
-            v-for="category in categories" 
+            v-for="(category, index) in categories" 
             :key="category"
             @click="activeCategory = category"
             :class="{ active: activeCategory === category }"
             class="tab-button"
+            :data-aos="'fade-up'"
+            :data-aos-delay="200 + (index * 100)"
           >
             {{ category }}
           </button>
         </div>
         <div class="portfolio-grid">
           <div 
-            v-for="demo in filteredDemos" 
+            v-for="(demo, index) in filteredDemos" 
             :key="demo.id"
             class="demo-card"
+            data-aos="fade-up"
+            :data-aos-delay="300 + (index * 100)"
           >
             <div class="demo-header">
               <h4>{{ demo.title }}</h4>
@@ -158,36 +168,36 @@
     <!-- Contacto -->
     <section id="contacto" class="contact section-padding">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Contacto</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">¿Tienes un proyecto en mente? Hablemos</p>
+          <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">¿Tienes un proyecto en mente? Hablemos</p>
         </div>
         <div class="contact-content">
-          <div class="contact-info">
-            <h3>Información de Contacto</h3>
-            <div class="contact-item">
+          <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+            <h3 data-aos="fade-right" data-aos-delay="250">Información de Contacto</h3>
+            <div class="contact-item" data-aos="fade-right" data-aos-delay="250">
               <Mail class="contact-icon" />
               <div>
                 <span class="contact-label">Email</span>
                 <span class="contact-value">ninaymarco3@gmail.com</span>
               </div>
             </div>
-            <div class="contact-item">
+            <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
               <Phone class="contact-icon" />
               <div>
                 <span class="contact-label">Teléfono</span>
                 <span class="contact-value">+57 310 6035384</span>
               </div>
             </div>
-            <div class="contact-item">
+            <div class="contact-item" data-aos="fade-right" data-aos-delay="350">
               <MapPin class="contact-icon" />
               <div>
                 <span class="contact-label">Ubicación</span>
                 <span class="contact-value">Colombia</span>
               </div>
             </div>
-            <div class="contact-item">
+            <div class="contact-item" data-aos="fade-right" data-aos-delay="400">
               <Clock class="contact-icon" />
               <div>
                 <span class="contact-label">Horario</span>
@@ -195,20 +205,27 @@
               </div>
             </div>
           </div>
-          <form @submit.prevent="submitForm" class="contact-form">
-            <div class="form-group">
+          <form @submit.prevent="submitForm" class="contact-form" data-aos="fade-left" data-aos-delay="200">
+            <div class="form-group" data-aos="fade-left" data-aos-delay="250">
               <label for="name">Nombre *</label>
               <input type="text" id="name" v-model="form.name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-aos="fade-left" data-aos-delay="300">
               <label for="email">Email *</label>
               <input type="email" id="email" v-model="form.email" required>
             </div>
-            <div class="form-group full-width">
+            <div class="form-group full-width" data-aos="fade-left" data-aos-delay="350">
               <label for="message">Mensaje *</label>
               <textarea id="message" v-model="form.message" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" :disabled="submitting" aria-label="Enviar mensaje de contacto">
+            <button 
+              type="submit" 
+              class="btn btn-primary" 
+              :disabled="submitting" 
+              aria-label="Enviar mensaje de contacto"
+              data-aos="fade-up" 
+              data-aos-delay="400"
+            >
               <Send class="btn-icon" />
               {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
             </button>
@@ -221,41 +238,41 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
-          <div class="footer-brand">
-            <div class="logo">
-              <div class="logo-image">
+          <div class="footer-brand" data-aos="fade-up" data-aos-delay="100">
+            <div class="logo" data-aos="fade-up" data-aos-delay="150">
+              <div class="logo-image" data-aos="zoom-in" data-aos-delay="200">
                 <img src="/logo.png" alt="Nina Rojas Logo" class="logo-img" />
               </div>
-              <div class="logo-text-container">
+              <div class="logo-text-container" data-aos="fade-up" data-aos-delay="250">
                 <span class="logo-text">Nina Rojas</span>
                 <span class="logo-subtitle">Voz Profesional</span>
               </div>
             </div>
-            <p>NR Max publicidad el arte de comunicar a un solo click.</p>
+            <p data-aos="fade-up" data-aos-delay="300">NR Max publicidad el arte de comunicar a un solo click.</p>
           </div>
           <div class="footer-links">
-            <div class="footer-section">
-              <h4>Navegación</h4>
+            <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+              <h4 data-aos="fade-up" data-aos-delay="250">Navegación</h4>
               <ul>
-                <li><a href="#inicio" @click="scrollTo('inicio')">Inicio</a></li>
-                <li><a href="#servicios" @click="scrollTo('servicios')">Servicios</a></li>
-                <li><a href="#portfolio" @click="scrollTo('portfolio')">Portfolio</a></li>
-                <li><a href="#contacto" @click="scrollTo('contacto')">Contacto</a></li>
+                <li data-aos="fade-up" data-aos-delay="300"><a href="#inicio" @click="scrollTo('inicio')">Inicio</a></li>
+                <li data-aos="fade-up" data-aos-delay="350"><a href="#servicios" @click="scrollTo('servicios')">Servicios</a></li>
+                <li data-aos="fade-up" data-aos-delay="400"><a href="#portfolio" @click="scrollTo('portfolio')">Portfolio</a></li>
+                <li data-aos="fade-up" data-aos-delay="450"><a href="#contacto" @click="scrollTo('contacto')">Contacto</a></li>
               </ul>
             </div>
-            <div class="footer-section">
-              <h4>Contacto</h4>
+            <div class="footer-section" data-aos="fade-up" data-aos-delay="250">
+              <h4 data-aos="fade-up" data-aos-delay="300">Contacto</h4>
               <ul>
-                <li>ninaymarco3@gmail.com</li>
-                <li>+57 310 6035384</li>
-                <li>Colombia</li>
+                <li data-aos="fade-up" data-aos-delay="350">ninaymarco3@gmail.com</li>
+                <li data-aos="fade-up" data-aos-delay="400">+57 310 6035384</li>
+                <li data-aos="fade-up" data-aos-delay="450">Colombia</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
-          <div class="admin-link">
+        <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
+          <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
+          <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
             <router-link to="/admin/login" class="admin-link-text">Admin</router-link>
           </div>
         </div>
@@ -675,7 +692,7 @@ onUnmounted(() => {
 }
 
 .hero-title {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .highlight {
@@ -693,19 +710,76 @@ onUnmounted(() => {
 .subtitle {
   display: block;
   font-size: 1.8rem;
-  color: #C0C0C0;
+  background: linear-gradient(135deg, #f8f8f8, #c0c0c0, #f8f8f8);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-weight: 300;
-  margin-top: 10px;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 1;
+}
+
+.subtitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shine 3s infinite;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  opacity: 0.7;
 }
 
 .hero-description {
   font-size: 1.2rem;
-  color: #C0C0C0;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  background: linear-gradient(135deg, #e0e0e0, #b0b0b0, #e0e0e0);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin: 0 auto 20px;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  position: relative;
+  padding: 0 20px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-description::before,
+.hero-description::after {
+  content: '❝';
+  position: absolute;
+  color: rgba(255, 215, 0, 0.5);
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.hero-description::before {
+  top: 0;
+  left: 0;
+}
+
+.hero-description::after {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .hero-stats {
