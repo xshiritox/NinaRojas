@@ -51,7 +51,7 @@
             <p class="subtitle">Locución Profesional de Alto Impacto</p>
           </div>
           <p class="hero-description">
-            NR Max publicida el arte de comunicar a un solo click.
+            NR Max publicidad el arte de comunicar a un solo click.
           </p>
           <div class="hero-stats">
             <div class="hero-stat">
@@ -516,7 +516,7 @@ onUnmounted(() => {
   background: rgba(19, 19, 19, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  padding: 6px 0;
+  padding: 12px 0;
   transition: all 0.3s ease;
 }
 
@@ -533,8 +533,8 @@ onUnmounted(() => {
 }
 
 .logo-image {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
@@ -542,6 +542,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  animation: logoGlow 3s ease-in-out infinite alternate;
 }
 
 .logo-img {
@@ -557,16 +561,16 @@ onUnmounted(() => {
 
 .logo-text {
   color: #FFD700;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .logo-subtitle {
   color: #C0C0C0;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 300;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .nav-links {
@@ -757,29 +761,22 @@ onUnmounted(() => {
   font-weight: 300;
 }
 
-.hero-description::before,
-.hero-description::after {
-  content: '❝';
-  position: absolute;
-  color: rgba(255, 215, 0, 0.5);
-  font-size: 1.5em;
-  line-height: 1;
-}
-
-.hero-description::before {
-  top: 0;
-  left: 0;
-}
-
-.hero-description::after {
-  bottom: 0;
-  right: 0;
-  transform: rotate(180deg);
-}
+/* Comillas decorativas eliminadas */
 
 @keyframes shine {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes logoGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), 0 0 40px rgba(255, 215, 0, 0.5);
+    transform: scale(1.03);
+  }
 }
 
 .hero-stats {
