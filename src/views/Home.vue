@@ -9,8 +9,8 @@
               <img src="/logo.png" alt="Nina Rojas Logo" class="logo-img" />
             </div>
             <div class="logo-text-container">
-              <span class="logo-text">Nina Rojas</span>
-              <span class="logo-subtitle">Voz Profesional</span>
+              <h1 class="logo-text">Nina Rojas - Locutora Profesional</h1>
+              <p class="logo-subtitle">Voz Profesional para Publicidad y Medios</p>
             </div>
           </div>
           <div class="nav-links">
@@ -19,7 +19,7 @@
             <a href="#portfolio" @click="scrollTo('portfolio')">Portfolio</a>
             <a href="#contacto" @click="scrollTo('contacto')">Contacto</a>
           </div>
-          <button class="menu-toggle" @click="toggleMobileMenu">
+          <button class="menu-toggle" @click="toggleMobileMenu" aria-label="Menú de navegación" :aria-expanded="mobileMenuOpen">
             <span></span>
             <span></span>
             <span></span>
@@ -29,7 +29,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
+    <div class="mobile-menu" :class="{ active: mobileMenuOpen }" role="navigation" aria-label="Mobile Navigation">
       <div class="mobile-nav-links">
         <a href="#inicio" @click="scrollToMobile('inicio')">Inicio</a>
         <a href="#servicios" @click="scrollToMobile('servicios')">Servicios</a>
@@ -39,19 +39,19 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero" role="region" aria-label="Hero Section">
       <div class="hero-background"></div>
       <div class="container">
         <div class="hero-content">
           <div class="hero-logo">
-            <img src="/logo.png" alt="Nina Rojas Logo" class="hero-logo-img" />
+            <img src="/logo.png" alt="Nina Rojas - Locutora Profesional" class="hero-logo-img" loading="lazy" />
           </div>
-          <h1 class="hero-title">
-            <span class="highlight">Nina Rojas</span>
-            <span class="subtitle">Locutora Profesional</span>
-          </h1>
+          <div class="hero-title">
+            <h2 class="highlight">Nina Rojas</h2>
+            <p class="subtitle">Locución Profesional de Alto Impacto</p>
+          </div>
           <p class="hero-description">
-            NR Max publicidad el arte de comunicar a un solo click.
+            NR Max publicida el arte de comunicar a un solo click.
           </p>
           <div class="hero-stats">
             <div class="hero-stat">
@@ -135,7 +135,7 @@
           >
             <div class="demo-header">
               <h4>{{ demo.title }}</h4>
-              <button @click="togglePlay(demo.id)" class="play-button">
+              <button @click="togglePlay(demo.id)" class="play-button" :aria-label="`${isPlaying(demo.id) ? 'Pausar' : 'Reproducir'} demo: ${demo.title}`">
                 <Play v-if="!isPlaying(demo.id)" />
                 <Pause v-else />
               </button>
@@ -208,7 +208,7 @@
               <label for="message">Mensaje *</label>
               <textarea id="message" v-model="form.message" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" :disabled="submitting">
+            <button type="submit" class="btn btn-primary" :disabled="submitting" aria-label="Enviar mensaje de contacto">
               <Send class="btn-icon" />
               {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
             </button>
