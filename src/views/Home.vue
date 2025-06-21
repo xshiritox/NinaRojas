@@ -499,7 +499,7 @@ onUnmounted(() => {
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  padding: 15px 0;
+  padding: 8px 0;
   transition: all 0.3s ease;
 }
 
@@ -516,11 +516,11 @@ onUnmounted(() => {
 }
 
 .logo-image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #FFD700;
+  margin-right: 12px;
   background: linear-gradient(135deg, #FFD700, #FFA500);
   display: flex;
   align-items: center;
@@ -540,20 +540,21 @@ onUnmounted(() => {
 
 .logo-text {
   color: #FFD700;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
 }
 
 .logo-subtitle {
   color: #C0C0C0;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 300;
+  margin-top: 2px;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .nav-links a {
@@ -602,11 +603,11 @@ onUnmounted(() => {
 
 .mobile-menu {
   position: fixed;
-  top: 80px;
+  top: 68px;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.98);
-  padding: 20px;
+  padding: 15px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
   z-index: 999;
