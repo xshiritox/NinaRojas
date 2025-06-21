@@ -785,7 +785,8 @@ onUnmounted(() => {
 
 /* Section Styles */
 .section-padding {
-  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  background: #161616;
+  color: #fff;
 }
 
 .section-header {
@@ -1089,7 +1090,7 @@ onUnmounted(() => {
 }
 
 .footer-brand p {
-  color: #C0C0C0;
+  color: #FFFFFF;
   margin-top: 15px;
   line-height: 1.6;
 }
@@ -1112,10 +1113,11 @@ onUnmounted(() => {
 
 .footer-section ul li {
   margin-bottom: 10px;
+  color: #FFFFFF;
 }
 
 .footer-section ul li a {
-  color: #C0C0C0;
+  color: #FFFFFF;
   text-decoration: none;
   transition: color 0.3s ease;
 }
