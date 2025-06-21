@@ -496,7 +496,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(19, 19, 19, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 6px 0;
@@ -650,7 +650,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('https://images.pexels.com/photos/3784221/pexels-photo-3784221.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;
+  background: url('/fondo.jpg') center/cover;
   opacity: 0.1;
 }
 
@@ -785,8 +785,7 @@ onUnmounted(() => {
 
 /* Section Styles */
 .section-padding {
-  background: #000;
-  color: #fff;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
 }
 
 .section-header {
