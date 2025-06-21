@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "firebase": "^10.14.1",
-    "lucide-vue-next": "^0.290.0",
+    "lucide-vue-next": "^0.144.0",
     "vue": "^3.4.38",
     "vue-router": "^4.2.5",
     "vue-toastification": "^2.0.0-rc.5"

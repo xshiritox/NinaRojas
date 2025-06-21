@@ -137,8 +137,12 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { collection, onSnapshot, query, orderBy, doc, deleteDoc, writeBatch } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { 
-  Save, LogOut, Plus, Trash2, 
-  Briefcase, Music 
+  Save, 
+  LogOut, 
+  Plus, 
+  Trash2, 
+  Briefcase, 
+  Music 
 } from 'lucide-vue-next'
 import { useAuth } from '../composables/useAuth'
 import type { Service, AudioDemo } from '../composables/useContent'
