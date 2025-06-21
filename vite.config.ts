@@ -3,20 +3,25 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
 export default defineConfig({
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      'lucide-vue-next': path.resolve(__dirname, 'node_modules/lucide-vue-next')
+      '@': path.resolve(__dirname, './src')
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
-  optimizeDeps: {
-    include: ['lucide-vue-next']
-  },
   server: {
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
+    fs: {
+      strict: true
+    },
+    hmr: true,
+    port: 3000,
+    open: true
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true
   }
 })
