@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NinaRojas - Locutora</title>
+    
+    <!-- Preconexiones a dominios externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Precarga de recursos críticos -->
+    <link rel="preload" href="/src/assets/main.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 
     <!-- Meta descripción para motores de búsqueda -->
     <meta name="description" content="Nina Rojas, locutora profesional especializada en comerciales, cuñas, vídeos comerciales y más. Escuchala y contáctala para tus proyectos de voz." />
@@ -30,7 +39,8 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <!-- Scripts con carga diferida -->
+    <script type="module" src="/src/main.ts" defer></script>
   </body>
 </html>
 
