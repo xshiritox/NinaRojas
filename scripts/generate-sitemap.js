@@ -1,6 +1,11 @@
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { createWriteStream } = require('fs');
-const { join } = require('path');
+import { SitemapStream } from 'sitemap';
+import { createWriteStream } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { pipeline } from 'stream/promises';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const links = [
   { url: '/', changefreq: 'daily', priority: 1.0 },
@@ -11,18 +16,33 @@ const links = [
   { url: '/admin/login', changefreq: 'monthly', priority: 0.3 },
 ];
 
-const sitemap = new SitemapStream({ 
-  hostname: 'https://ninarojas.netlify.app',
-  lastmodDateOnly: true
-});
+async function generateSitemap() {
+  try {
+    const sitemap = new SitemapStream({ 
+      hostname: 'https://ninarojas.netlify.app',
+      lastmodDateOnly: true
+    });
 
-const writeStream = createWriteStream(join(__dirname, '../public/sitemap.xml'));
-sitemap.pipe(writeStream);
+    const writeStream = createWriteStream(join(__dirname, '../public/sitemap.xml'));
+    
+    // Usar pipeline para manejar correctamente el stream
+    await pipeline(
+      sitemap,
+      writeStream
+    );
 
-links.forEach(link => {
-  sitemap.write(link);
-});
+    // Escribir los enlaces al stream
+    for (const link of links) {
+      sitemap.write(link);
+    }
+    
+    sitemap.end();
+    
+    console.log('✅ Sitemap generado correctamente en /public/sitemap.xml');
+  } catch (error) {
+    console.error('❌ Error al generar el sitemap:', error);
+    process.exit(1);
+  }
+}
 
-sitemap.end();
-
-console.log('Sitemap generado en /public/sitemap.xml');
+generateSitemap();
