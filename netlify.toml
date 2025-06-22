@@ -2,11 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# Configuración de redirecciones
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Configuración de encabezados globales
 [[headers]]
   for = "/*"
   [headers.values]
@@ -15,3 +17,17 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com https://www.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com; frame-src 'self' https://*.firebaseapp.com;"
+
+# Configuración específica para sitemap.xml
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=3600"  # Cache de 1 hora
+
+# Configuración específica para robots.txt
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+    Cache-Control = "public, max-age=3600"  # Cache de 1 hora
