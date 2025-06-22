@@ -6,7 +6,7 @@
         <div class="nav-content">
           <div class="logo">
             <div class="logo-image">
-              <img src="/logo.png" alt="Nina Rojas Logo" class="logo-img" />
+              <img :src="`${publicPath}logo.WebP`" alt="Nina Rojas Logo" class="logo-img" />
             </div>
             <div class="logo-text-container">
               <h1 class="logo-text">Nina Rojas - Locutora Profesional</h1>
@@ -44,7 +44,7 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-logo" data-aos="fade-down" data-aos-delay="100">
-            <img src="/logo.png" alt="Nina Rojas - Locutora Profesional" class="hero-logo-img" loading="lazy" />
+            <img :src="`${publicPath}logo.WebP`" alt="Nina Rojas - Locutora Profesional" class="hero-logo-img" loading="lazy" />
           </div>
           <div class="hero-title" data-aos="fade-up" data-aos-delay="200">
             <h2 class="highlight" data-aos="fade-up" data-aos-delay="300">Nina Rojas</h2>
@@ -241,7 +241,7 @@
           <div class="footer-brand" data-aos="fade-up" data-aos-delay="100">
             <div class="logo" data-aos="fade-up" data-aos-delay="150">
               <div class="logo-image" data-aos="zoom-in" data-aos-delay="200">
-                <img src="/logo.png" alt="Nina Rojas Logo" class="logo-img" />
+                <img :src="`${publicPath}logo.WebP`" alt="Nina Rojas Logo" class="logo-img" />
               </div>
               <div class="logo-text-container" data-aos="fade-up" data-aos-delay="250">
                 <span class="logo-text">Nina Rojas</span>
@@ -273,7 +273,7 @@
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
           <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <router-link to="/admin/login" class="admin-link-text">Admin</router-link>
+            <router-link to="/admin/login" class="admin-link-text" @click.prevent="navigateToAdmin">Admin</router-link>
           </div>
         </div>
       </div>
@@ -282,6 +282,41 @@
 </template>
 
 <script setup lang="ts">
+// Vue and external dependencies
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useHead } from '@vueuse/head'
+import { db } from '../firebase/config'
+import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
+import { 
+  Mic, Mail, Phone, MapPin, Clock, Play, Pause, Send,
+  Radio, BookOpen, Users, Headphones, FileText, Award
+} from 'lucide-vue-next'
+import { useToast } from 'vue-toastification'
+
+// Base path for public assets
+const publicPath = import.meta.env.BASE_URL;
+
+// Initialize toast
+const toast = useToast()
+
+// Interfaces
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  featured?: boolean;
+}
+
+interface AudioDemo {
+  id: string;
+  title: string;
+  description: string;
+  audioUrl: string;
+  category: string;
+}
+
 // Datos estructurados para SEO
 const structuredData = {
   "@context": "https://schema.org",
@@ -327,34 +362,6 @@ useHead({
     }
   ]
 });
-
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useHead } from '@vueuse/head'
-import { db } from '../firebase/config'
-import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
-
-interface Service {
-  id: string;
-  title: string;
-  description: string;
-  price: string;
-  featured?: boolean;
-}
-
-interface AudioDemo {
-  id: string;
-  title: string;
-  description: string;
-  audioUrl: string;
-  category: string;
-}
-import { 
-  Mic, Mail, Phone, MapPin, Clock, Play, Pause, Send,
-  Radio, BookOpen, Users, Headphones, FileText, Award
-} from 'lucide-vue-next'
-import { useToast } from 'vue-toastification'
-
-const toast = useToast()
 
 // Datos reactivos
 const services = ref<Service[]>([])
@@ -480,6 +487,13 @@ const submitForm = async () => {
 let servicesUnsubscribe: (() => void) | null = null;
 let portfolioUnsubscribe: (() => void) | null = null;
 let heroUnsubscribe: (() => void) | null = null;
+
+// Navegación mejorada para móviles
+const navigateToAdmin = () => {
+  // Forzar la navegación programáticamente
+  const router = useRouter();
+  router.push('/admin/login');
+};
 let contactUnsubscribe: (() => void) | null = null;
 
 // Función para cargar datos en tiempo real
@@ -718,7 +732,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/fondo.jpg') center/cover;
+  background: url('/fondo.WebP') center/cover;
   opacity: 0.1;
 }
 

@@ -26,7 +26,7 @@ const links = [
     priority: 1.0, 
     lastmod: new Date().toISOString(),
     img: [
-      { url: '/logo.png', title: 'Nina Rojas - Locutora Profesional' }
+      { url: '/logo.WebP', title: 'Nina Rojas - Locutora Profesional' }
     ]
   },
   { 

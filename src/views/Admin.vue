@@ -1,5 +1,8 @@
 <template>
-  <div class="admin-panel">
+  <div v-if="authChecked" class="admin-panel">
+  <div v-if="authError" class="error-message">
+    Error de autenticación. Redirigiendo al inicio de sesión...
+  </div>
     <!-- Admin Header -->
     <header class="admin-header">
       <div class="container">
@@ -13,7 +16,7 @@
               <Save class="btn-icon" />
               {{ saving ? 'Guardando...' : 'Guardar Cambios' }}
             </button>
-            <button @click="logout" class="btn btn-secondary">
+            <button @click="auth.logout" class="btn btn-secondary">
               <LogOut class="btn-icon" />
               Cerrar Sesión
             </button>
@@ -129,6 +132,10 @@
         </div>
       </div>
     </main>
+    </div>
+  <div v-else class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Verificando autenticación...</p>
   </div>
 </template>
 
@@ -148,8 +155,10 @@ import { useAuth } from '../composables/useAuth'
 import type { Service, AudioDemo } from '../composables/useContent'
 import { useRouter, onBeforeRouteUpdate } from 'vue-router'
 
-const { logout, isAuthenticated, initAuth } = useAuth()
+const auth = useAuth()
 const router = useRouter()
+const authChecked = ref(false)
+const authError = ref(false)
 
 // Referencias a las colecciones de Firebase
 const servicesRef = collection(db, 'services')
@@ -285,23 +294,26 @@ const cleanup = () => {
 onMounted(async () => {
   try {
     // Esperar a que la autenticación se inicialice
-    await initAuth()
+    await auth.initAuth()
     
-    // Verificar autenticación
-    if (!isAuthenticated.value) {
-      console.log('No autenticado, redirigiendo a login')
-      router.push('/admin/login')
+    // Verificar si el usuario está autenticado
+    if (!auth.isAuthenticated) {
+      router.push('/admin-login')
       return
     }
     
-    // Cargar datos solo si está autenticado
+    // Marcar que la verificación de autenticación está completa
+    authChecked.value = true
+    
     loadRealtimeData()
     
     // Configurar evento beforeunload
     window.addEventListener('beforeunload', cleanup)
   } catch (error) {
-    console.error('Error en el montaje del componente Admin:', error)
-    router.push('/admin/login')
+    console.error('Error al cargar los datos:', error)
+    authError.value = true
+    // Redirigir al login en caso de error de autenticación
+    router.push('/admin-login')
   }
 })
 
@@ -312,10 +324,9 @@ onUnmounted(() => {
 })
 
 // Proteger la ruta
-// Proteger la ruta
-const handleRouteUpdate = async (_to: any, _from: any, next: (route?: string) => void) => {
-  if (!isAuthenticated.value) {
-    next('/admin/login')
+const handleRouteUpdate = (_to: any, _from: any, next: (route?: string) => void) => {
+  if (!auth.isAuthenticated) {
+    next('/admin-login')
   } else {
     next()
   }
@@ -607,5 +618,40 @@ select option:checked {
     gap: 15px;
     align-items: flex-start;
   }
+}
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
 }
 </style>

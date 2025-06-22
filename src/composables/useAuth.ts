@@ -45,29 +45,54 @@ export const useAuth = () => {
   const initAuth = () => {
     return new Promise<void>((resolve) => {
       // Forzar la limpieza de la caché de autenticación
-      auth.currentUser?.reload()
+      if (auth.currentUser) {
+        auth.currentUser.reload().catch((error) => {
+          console.warn('Error al recargar el usuario:', error)
+        })
+      }
       
-      const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-        user.value = firebaseUser
-        authInitialized.value = true
-        loading.value = false
-        unsubscribe()
-        resolve()
-      }, (error) => {
-        console.error('Error en autenticación:', error)
-        authInitialized.value = true
-        loading.value = false
-        resolve()
-      })
-
-      // Timeout para asegurar que siempre se resuelva
-      setTimeout(() => {
+      // Configurar el observador de autenticación
+      const unsubscribe = onAuthStateChanged(
+        auth,
+        (firebaseUser) => {
+          // Usuario autenticado
+          user.value = firebaseUser
+          authInitialized.value = true
+          loading.value = false
+          resolve()
+          
+          // Limpiar el listener después de la primera verificación
+          unsubscribe()
+        },
+        (error) => {
+          // Error en la autenticación
+          console.error('Error en la autenticación:', error)
+          user.value = null
+          authInitialized.value = true
+          loading.value = false
+          resolve()
+          
+          // Limpiar el listener en caso de error
+          unsubscribe()
+        }
+      )
+      
+      // Timeout de seguridad en caso de que la autenticación nunca se resuelva
+      const timeoutId = setTimeout(() => {
         if (!authInitialized.value) {
+          console.warn('Timeout en la inicialización de autenticación')
+          user.value = null
           authInitialized.value = true
           loading.value = false
           resolve()
         }
-      }, 2000)
+      }, 5000) // 5 segundos de timeout
+      
+      // Limpiar el timeout cuando se resuelva la promesa
+      return () => {
+        clearTimeout(timeoutId)
+        unsubscribe()
+      }
     })
   }
 
