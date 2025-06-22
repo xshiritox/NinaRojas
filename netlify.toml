@@ -21,7 +21,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
 
 # Configuración de encabezados globales
 [[headers]]
@@ -40,3 +39,10 @@
     Content-Type = "application/xml; charset=utf-8"
     Cache-Control = "public, max-age=3600"
     Access-Control-Allow-Origin = "*"
+
+# Configuración específica para robots.txt
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
