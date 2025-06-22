@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useAuth } from '../composables/useAuth'
-import { useRouter } from 'vue-router'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 
 const { login, isAuthenticated, initAuth } = useAuth()
 const router = useRouter()
@@ -61,26 +61,54 @@ const router = useRouter()
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
+const loginError = ref('')
 
 const handleLogin = async () => {
-  if (!email.value || !password.value) return
+  if (!email.value || !password.value) {
+    loginError.value = 'Por favor ingresa email y contraseña'
+    return
+  }
   
   loading.value = true
+  loginError.value = ''
+  
   try {
-    await login(email.value, password.value)
-  } catch (error) {
+    const success = await login(email.value, password.value)
+    if (success) {
+      router.push('/admin')
+    }
+  } catch (error: any) {
     console.error('Login error:', error)
+    loginError.value = 'Credenciales incorrectas. Por favor intenta de nuevo.'
   } finally {
     loading.value = false
   }
 }
 
-onMounted(() => {
-  initAuth()
-  if (isAuthenticated.value) {
-    router.push('/admin')
+// Verificar autenticación al montar
+onMounted(async () => {
+  try {
+    await initAuth()
+    if (isAuthenticated.value) {
+      router.push('/admin')
+    }
+  } catch (error) {
+    console.error('Error al inicializar autenticación:', error)
   }
 })
+
+// Evitar que usuarios autenticados accedan a la página de login
+const handleBeforeLeave = (to: any, _from: any, next: (route?: string | false) => void) => {
+  if (to.path === '/admin' && isAuthenticated.value) {
+    next()
+  } else if (to.path === '/admin') {
+    next(false)
+  } else {
+    next()
+  }
+}
+
+onBeforeRouteLeave(handleBeforeLeave)
 </script>
 
 <style scoped>

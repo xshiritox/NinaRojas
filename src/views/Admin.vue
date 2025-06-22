@@ -146,7 +146,7 @@ import {
 } from 'lucide-vue-next'
 import { useAuth } from '../composables/useAuth'
 import type { Service, AudioDemo } from '../composables/useContent'
-import { useRouter } from 'vue-router'
+import { useRouter, onBeforeRouteUpdate } from 'vue-router'
 
 const { logout, isAuthenticated, initAuth } = useAuth()
 const router = useRouter()
@@ -283,17 +283,45 @@ const cleanup = () => {
 }
 
 onMounted(async () => {
-  await initAuth()
-  if (!isAuthenticated.value) {
-    router.push('/admin/login')
-  } else {
+  try {
+    // Esperar a que la autenticación se inicialice
+    await initAuth()
+    
+    // Verificar autenticación
+    if (!isAuthenticated.value) {
+      console.log('No autenticado, redirigiendo a login')
+      router.push('/admin/login')
+      return
+    }
+    
+    // Cargar datos solo si está autenticado
     loadRealtimeData()
+    
+    // Configurar evento beforeunload
+    window.addEventListener('beforeunload', cleanup)
+  } catch (error) {
+    console.error('Error en el montaje del componente Admin:', error)
+    router.push('/admin/login')
   }
 })
 
+// Limpiar al desmontar
 onUnmounted(() => {
   cleanup()
+  window.removeEventListener('beforeunload', cleanup)
 })
+
+// Proteger la ruta
+// Proteger la ruta
+const handleRouteUpdate = async (_to: any, _from: any, next: (route?: string) => void) => {
+  if (!isAuthenticated.value) {
+    next('/admin/login')
+  } else {
+    next()
+  }
+}
+
+onBeforeRouteUpdate(handleRouteUpdate)
 </script>
 
 <style scoped>
