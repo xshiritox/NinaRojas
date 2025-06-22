@@ -4,6 +4,18 @@
 
 # Configuración de redirecciones
 [[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
@@ -22,12 +34,13 @@
 [[headers]]
   for = "/sitemap.xml"
   [headers.values]
-    Content-Type = "application/xml"
-    Cache-Control = "public, max-age=3600"  # Cache de 1 hora
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    Access-Control-Allow-Origin = "*"
 
 # Configuración específica para robots.txt
 [[headers]]
   for = "/robots.txt"
   [headers.values]
-    Content-Type = "text/plain"
-    Cache-Control = "public, max-age=3600"  # Cache de 1 hora
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
