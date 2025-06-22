@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "postbuild": "npm run sitemap"
   },
   "dependencies": {
+    "@vueuse/head": "^2.0.0",
     "aos": "^2.3.4",
     "firebase": "^10.14.1",
     "lucide-vue-next": "^0.144.0",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.7",
     "@vitejs/plugin-vue": "^5.1.3",
+    "sitemap": "^8.0.0",
     "terser": "^5.43.1",
     "typescript": "^5.5.3",
     "vite": "^5.4.2",

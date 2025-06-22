@@ -90,7 +90,7 @@
     <section id="servicios" class="services section-padding">
       <div class="container">
         <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Servicios</h2>
+          <h1 class="section-title">Servicios de Locución Profesional</h1>
           <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
           <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Soluciones profesionales de voz para cada necesidad</p>
         </div>
@@ -105,7 +105,7 @@
             <div class="service-icon" data-aos="zoom-in" :data-aos-delay="300 + (index * 100)">
               <component :is="getServiceIcon(service.title)" />
             </div>
-            <h3>{{ service.title }}</h3>
+            <h2 class="service-title">{{ service.title }}</h2>
             <p>{{ service.description }}</p>
             <div class="service-price" v-if="service.price">{{ service.price }}</div>
             <div class="service-badge" v-if="service.featured">Más Solicitado</div>
@@ -118,7 +118,7 @@
     <section id="portfolio" class="portfolio section-padding">
       <div class="container">
         <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Portfolio</h2>
+          <h1 class="section-title">Muestra de Trabajos de Locución</h1>
           <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
           <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Escucha algunos de mis trabajos más destacados</p>
         </div>
@@ -144,7 +144,7 @@
             :data-aos-delay="300 + (index * 100)"
           >
             <div class="demo-header">
-              <h4>{{ demo.title }}</h4>
+              <h3>{{ demo.title }}</h3>
               <button @click="togglePlay(demo.id)" class="play-button" :aria-label="`${isPlaying(demo.id) ? 'Pausar' : 'Reproducir'} demo: ${demo.title}`">
                 <Play v-if="!isPlaying(demo.id)" />
                 <Pause v-else />
@@ -169,13 +169,13 @@
     <section id="contacto" class="contact section-padding">
       <div class="container">
         <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Contacto</h2>
+          <h1 class="section-title">Contrata una Locutora Profesional</h1>
           <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
           <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">¿Tienes un proyecto en mente? Hablemos</p>
         </div>
         <div class="contact-content">
           <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
-            <h3 data-aos="fade-right" data-aos-delay="250">Información de Contacto</h3>
+            <h2 class="contact-heading" data-aos="fade-right" data-aos-delay="250">Información de Contacto</h2>
             <div class="contact-item" data-aos="fade-right" data-aos-delay="250">
               <Mail class="contact-icon" />
               <div>
@@ -282,7 +282,54 @@
 </template>
 
 <script setup lang="ts">
+// Datos estructurados para SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Nina Rojas - Locutora Profesional",
+  "description": "Servicios profesionales de locución para publicidad, radio, televisión y más. Voz profesional con amplia experiencia en el sector.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CO",
+    "addressRegion": "Colombia"
+  },
+  "telephone": "+573106035384",
+  "email": "ninaymarco3@gmail.com",
+  "url": "https://ninarojas.netlify.app",
+  "priceRange": "$$",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/tu-pagina",
+    "https://www.instagram.com/tu-cuenta",
+    "https://www.linkedin.com/in/tu-perfil"
+  ]
+};
+
+// Añadir al head
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(structuredData)
+    }
+  ]
+});
+
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
 import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
 
