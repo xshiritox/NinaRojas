@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "functions"
 
 # Configuración de redirecciones
 [[redirects]]
@@ -9,28 +8,20 @@
   to = "/sitemap.xml"
   status = 200
   force = true
+  headers = {X-From = "Netlify", X-Sitemap = "true"}
 
 [[redirects]]
   from = "/robots.txt"
   to = "/robots.txt"
   status = 200
   force = true
+  headers = {X-From = "Netlify"}
 
-# Redirección para SPA (Single Page Application)
+# Redirección SPA (manejar rutas del lado del cliente)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
-
-# Asegurar que los archivos estáticos se sirvan correctamente
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
 
 # Configuración de encabezados globales
 [[headers]]
@@ -49,6 +40,7 @@
     Content-Type = "application/xml; charset=utf-8"
     Cache-Control = "public, max-age=3600, must-revalidate"
     Access-Control-Allow-Origin = "*"
+    X-Sitemap-Status = "Active"
 
 # Configuración específica para robots.txt
 [[headers]]
