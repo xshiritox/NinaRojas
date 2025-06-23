@@ -310,6 +310,26 @@
       </div>
     </footer>
   </div>
+
+  <!-- Modal de confirmación de servicio -->
+  <div v-if="showServiceModal" class="modal-overlay" @click.self="closeServiceModal">
+    <div class="modal-content" data-aos="zoom-in">
+      <div class="modal-header">
+        <h3>¿Solicitar Servicio?</h3>
+        <button class="close-button" @click="closeServiceModal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás interesado en el servicio: <strong>{{ selectedService?.title }}</strong>?</p>
+        <p>Serás redirigido a WhatsApp para completar tu solicitud.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" @click="closeServiceModal">Cancelar</button>
+        <button class="btn btn-primary" @click="confirmServiceRequest">Sí, continuar</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -338,14 +358,36 @@ const publicPath = import.meta.env.BASE_URL;
 // Initialize toast
 const toast = useToast()
 
+// Variables para almacenar las funciones de limpieza
+let servicesUnsubscribe: (() => void) | null = null;
+let portfolioUnsubscribe: (() => void) | null = null;
+let heroUnsubscribe: (() => void) | null = null;
+let contactUnsubscribe: (() => void) | null = null;
+
+// Variables para el modal de servicio
+const showServiceModal = ref(false)
+const selectedService = ref<Service | null>(null)
+const serviceMessage = ref('')
+
 // Función para manejar la solicitud de servicio
 const solicitarServicio = (service: Service) => {
-  const mensaje = `¡Hola Nina Rojas! Estoy interesado en el servicio: ${service.title} ¿Podrías darme más información?`
-  
-  if (confirm(`¿Deseas solicitar el servicio: ${service.title}?`)) {
+  selectedService.value = service
+  serviceMessage.value = `¡Hola Nina Rojas! Estoy interesado en el servicio: ${service.title}`
+  showServiceModal.value = true
+}
+
+const closeServiceModal = () => {
+  showServiceModal.value = false
+  selectedService.value = null
+  serviceMessage.value = ''
+}
+
+const confirmServiceRequest = () => {
+  if (selectedService.value) {
     const telefono = '573106035384' // Tu número de WhatsApp
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(serviceMessage.value)}`
     window.open(url, '_blank')
+    closeServiceModal()
   }
 }
 
@@ -526,13 +568,10 @@ const submitForm = async () => {
   }
 }
 
-// Variables para almacenar las funciones de limpieza
-let servicesUnsubscribe: (() => void) | null = null;
-let portfolioUnsubscribe: (() => void) | null = null;
-let heroUnsubscribe: (() => void) | null = null;
-
-
-let contactUnsubscribe: (() => void) | null = null;
+// Variables para almacenar las funciones de limpieza (declaradas arriba)
+// let servicesUnsubscribe: (() => void) | null = null;
+// let portfolioUnsubscribe: (() => void) | null = null;
+// let heroUnsubscribe: (() => void) | null = null;
 
 // Función para cargar datos en tiempo real
 const loadRealtimeData = () => {
@@ -597,13 +636,15 @@ onMounted(() => {
   
   // Inicializar AOS
   const loadAOS = () => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      easing: 'ease-in-out',
-      offset: 20,
-      delay: 100
-    });
+    if (window.AOS) {
+      window.AOS.init({
+        duration: 600,
+        once: true,
+        easing: 'ease-in-out',
+        offset: 20,
+        delay: 100
+      });
+    }
   };
 
   // Cargar AOS cuando el usuario esté inactivo
@@ -1038,6 +1079,111 @@ onUnmounted(() => {
   margin: 0 auto;
 }
 
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid #FFD700;
+  box-shadow: 0 5px 30px rgba(255, 215, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #FFD700;
+  font-size: 1.5rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #FFD700;
+}
+
+.modal-body {
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: #FFD700;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #ffc800;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
 /* Services Section */
 .services {
   background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
@@ -1364,6 +1510,19 @@ onUnmounted(() => {
 }
 
 /* Footer */
+.footer {
+  background: linear-gradient(135deg, #0f0f0f 0%, #000 100%);
+  padding: 60px 0 20px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
 .footer-brand .logo {
   display: flex;
   align-items: center;
