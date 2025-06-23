@@ -792,8 +792,8 @@ onUnmounted(() => {
 }
 
 .hero-logo-img {
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 4px solid #FFD700;
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
@@ -1382,16 +1382,16 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .footer-brand .logo-image {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
   
   .footer-brand .logo-text {
-    font-size: 16px;
+    font-size: 18px;
   }
   
   .footer-brand .logo-subtitle {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -1542,6 +1542,11 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  .hero-logo-img {
+    width: 130px !important;
+    height: 130px !important;
+  }
+  
   .nav-links {
     display: none;
   }
