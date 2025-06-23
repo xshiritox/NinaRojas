@@ -253,7 +253,7 @@
                 <span class="logo-subtitle">Voz Profesional</span>
               </div>
             </div>
-            <p data-aos="fade-up" data-aos-delay="300">NR Max publicidad el arte de comunicar a un solo click.</p>
+            <p data-aos="fade-up" data-aos-delay="300">Locutora profesional con 10 años de experiencia especializada en comerciales, cuñas, vídeos publicitarios y más. Escuchala y contáctala para tus proyectos de voz.</p>
           </div>
           <div class="footer-links">
             <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
