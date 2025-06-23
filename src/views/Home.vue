@@ -1350,6 +1350,51 @@ onUnmounted(() => {
 }
 
 /* Footer */
+.footer-brand .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-brand .logo-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.footer-brand .logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-brand .logo-text {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.footer-brand .logo-subtitle {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .footer-brand .logo-image {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .footer-brand .logo-text {
+    font-size: 16px;
+  }
+  
+  .footer-brand .logo-subtitle {
+    font-size: 11px;
+  }
+}
+
 .footer {
   background: linear-gradient(135deg, #0f0f0f 0%, #000 100%);
   padding: 60px 0 20px;
