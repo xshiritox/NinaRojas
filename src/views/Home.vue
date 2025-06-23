@@ -301,8 +301,9 @@
         </div>
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
-          <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <button @click="goToAdmin" class="admin-button">Admin</button>
+          <!-- Botón Admin sin animaciones AOS para respuesta inmediata -->
+          <div class="admin-link" style="pointer-events: auto;">
+            <button @click="goToAdmin" class="admin-button" style="touch-action: manipulation;">Admin</button>
           </div>
         </div>
       </div>
@@ -445,8 +446,11 @@ const scrollTo = (id: string) => {
   }
 };
 
-const goToAdmin = () => {
+const goToAdmin = (event: Event) => {
+  event.preventDefault();
+  event.stopPropagation();
   window.location.href = '/admin/login';
+  return false;
 };
 
 const togglePlay = async (demoId: string) => {
