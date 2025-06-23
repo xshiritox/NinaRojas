@@ -314,10 +314,12 @@
 <script setup lang="ts">
 // Vue and external dependencies
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 declare global {
   interface Window {
-    AOS: any;
+    AOS: typeof AOS;
   }
 }
 import { useHead } from '@vueuse/head'
@@ -581,21 +583,15 @@ const loadRealtimeData = () => {
 onMounted(() => {
   loadRealtimeData();
   
-  // Cargar AOS de forma diferida
+  // Inicializar AOS
   const loadAOS = () => {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/aos@next/dist/aos.js';
-    script.async = true;
-    script.onload = () => {
-      window.AOS.init({
-        duration: 600,
-        once: true,
-        easing: 'ease-in-out',
-        offset: 20,
-        delay: 100
-      });
-    };
-    document.head.appendChild(script);
+    AOS.init({
+      duration: 600,
+      once: true,
+      easing: 'ease-in-out',
+      offset: 20,
+      delay: 100
+    });
   };
 
   // Cargar AOS cuando el usuario esté inactivo
