@@ -46,8 +46,8 @@
               alt="Nina Rojas - Locutora Profesional" 
               class="hero-logo-img" 
               loading="eager"
-              width="160"
-              height="160"
+              width="130"
+              height="130"
               :style="{'--bg-color': '#FFD700'}"
             />
           </div>
@@ -1672,8 +1672,12 @@ onUnmounted(() => {
   }
   
   .footer-links {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
+  }
+  
+  .footer-section {
+    margin-bottom: 0;
   }
   
   .footer-bottom {
@@ -1707,8 +1711,8 @@ onUnmounted(() => {
   }
   
   .hero-logo-img {
-    width: 80px;
-    height: 80px;
+    width: 130px !important;
+    height: 130px !important;
   }
   
   .highlight {
