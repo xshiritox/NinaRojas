@@ -55,7 +55,7 @@
             <h2 class="highlight" data-aos="fade-up" data-aos-delay="300">Nina Rojas</h2>
             <p class="subtitle">Locución Profesional de Alto Impacto</p>
           </div>
-          <p>  <!-- class="hero-description" -->
+          <p>
             NR Max publicidad el arte de comunicar a un solo click.
           </p>
           <div class="hero-stats">
