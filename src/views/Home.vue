@@ -55,11 +55,11 @@
           </p>
           <div class="hero-stats">
             <div class="hero-stat">
-              <span class="stat-number">500+</span>
+              <span class="stat-number">+500</span>
               <span class="stat-label">Proyectos</span>
             </div>
             <div class="hero-stat">
-              <span class="stat-number">5</span>
+              <span class="stat-number">10</span>
               <span class="stat-label">Años</span>
             </div>
             <div class="hero-stat">
@@ -103,7 +103,7 @@
             :data-aos-delay="200 + (index * 100)"
           >
             <div class="service-icon" data-aos="zoom-in" :data-aos-delay="300 + (index * 100)">
-              <component :is="getServiceIcon(service.title)" />
+              <img :src="`${publicPath}servicio.WebP`" :alt="service.title" class="service-icon-img" />
             </div>
             <h2 class="service-title">{{ service.title }}</h2>
             <p>{{ service.description }}</p>
@@ -289,8 +289,7 @@ import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
 import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
 import { 
-  Mic, Mail, Phone, MapPin, Clock, Play, Pause, Send,
-  Radio, BookOpen, Users, Headphones, FileText, Award
+  Mail, Phone, MapPin, Clock, Play, Pause, Send
 } from 'lucide-vue-next'
 import { useToast } from 'vue-toastification'
 
@@ -410,18 +409,6 @@ const scrollTo = (elementId: string) => {
 const scrollToMobile = (elementId: string) => {
   scrollTo(elementId)
   mobileMenuOpen.value = false
-}
-
-const getServiceIcon = (title: string) => {
-  const iconMap: { [key: string]: any } = {
-    'Comerciales': Radio,
-    'Documentales': FileText,
-    'E-learning': Users,
-    'Audiolibros': BookOpen,
-    'Corporativo': Award,
-    'IVR': Headphones
-  }
-  return iconMap[title] || Mic
 }
 
 const togglePlay = async (demoId: string) => {
@@ -974,16 +961,75 @@ onUnmounted(() => {
   box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+  }
+}
+
 .service-icon {
   width: 80px;
   height: 80px;
-  margin: 0 auto 20px;
+  margin: 0 auto 20%;
   background: linear-gradient(135deg, #FFD700, #FFA500);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000;
+  padding: 0px;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  animation: float 3s ease-in-out infinite, pulse 3s ease-in-out infinite;
+}
+
+.service-icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%) rotate(45deg);
+  transition: 0.6s;
+}
+
+.service-icon:hover {
+  animation: none;
+  transform: rotate(360deg) scale(1.1) translateY(-5px);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+}
+
+.service-icon:hover::before {
+  transform: translateX(100%) rotate(45deg);
+}
+
+.service-icon-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.service-card:hover .service-icon-img {
+  transform: scale(1.2);
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
 }
 
 .service-card h3 {
