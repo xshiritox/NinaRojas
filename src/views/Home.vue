@@ -398,6 +398,7 @@ const contactInfo = ref<any>({
   schedule: ''
 })
 
+// Inicializar el menú móvil como cerrado por defecto
 const mobileMenuOpen = ref(false)
 const activeCategory = ref('Todos')
 const playingAudios = ref<Set<string>>(new Set())
@@ -679,12 +680,13 @@ onUnmounted(() => {
 }
 
 .menu-toggle {
-  display: none;
+  display: flex; /* Mostrar el botón del menú en móviles por defecto */
   flex-direction: column;
   background: none;
   border: none;
   cursor: pointer;
   padding: 5px;
+  z-index: 1001; /* Asegura que esté por encima de otros elementos */
 }
 
 .menu-toggle span {
@@ -1310,12 +1312,6 @@ onUnmounted(() => {
   }
 }
 
-@media (max-width: 768px) {
-  .footer-links {
-    grid-template-columns: 1fr;
-  }
-}
-
 .social-links {
   display: flex;
   flex-direction: column;
@@ -1438,6 +1434,17 @@ onUnmounted(() => {
   
   .menu-toggle {
     display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .menu-toggle span {
+    background: #FFD700;
   }
   
   .logo-image {
@@ -1446,12 +1453,55 @@ onUnmounted(() => {
   }
   
   .logo-text {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  
+  .logo-subtitle {
+    font-size: 14px;
+  }
+  
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: #1a1a1a;
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+    padding: 80px 20px 40px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mobile-menu.active {
+    right: 0;
+  }
+  
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .mobile-nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.3s ease;
+  }
+  
+  .mobile-nav-links a:hover {
+    color: #FFD700;
   }
   
   .hero-logo-img {
     width: 100px;
     height: 100px;
+    margin-top: 20px;
   }
   
   .highlight {
