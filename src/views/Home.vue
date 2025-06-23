@@ -1597,8 +1597,8 @@ onUnmounted(() => {
   }
   
   .hero-logo-img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin-top: 20px;
     background-color: var(--bg-color, #FFD700);
     border-radius: 50%;
