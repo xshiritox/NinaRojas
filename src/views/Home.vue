@@ -305,7 +305,7 @@
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
           <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <a href="/admin/login" class="admin-link-text">Admin</a>
+            <router-link to="/admin/login" class="admin-link-text" @click="(e: Event) => { e.preventDefault(); $router.push('/admin/login'); }">Admin</router-link>
           </div>
         </div>
       </div>
@@ -1056,6 +1056,12 @@ onUnmounted(() => {
   overflow: hidden;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   animation: float 3s ease-in-out infinite, pulse 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .service-icon {
+    margin: 0 auto 10%;
+  }
 }
 
 .service-icon::before {
