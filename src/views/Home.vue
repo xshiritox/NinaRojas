@@ -382,8 +382,8 @@ const structuredData = {
     }
   ],
   "sameAs": [
-    "https://www.facebook.com/tu-pagina",
-    "https://www.instagram.com/tu-cuenta",
+    "https://www.facebook.com/jeimmyp.rojas.1",
+    "https://www.instagram.com/ninapat24",
     "https://www.linkedin.com/in/tu-perfil"
   ]
 };
