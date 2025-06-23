@@ -792,6 +792,24 @@ onUnmounted(() => {
 
 .hero-logo {
   margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-logo::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+  background-size: 200% 200%;
+  animation: gradientBG 4s ease infinite;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.7;
+  top: 0;
+  left: 0;
 }
 
 .hero-logo-img {
@@ -801,6 +819,39 @@ onUnmounted(() => {
   border: 4px solid #FFD700;
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
   object-fit: cover;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-logo-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.7);
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05) translateZ(0);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero-title {
