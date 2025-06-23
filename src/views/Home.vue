@@ -278,7 +278,7 @@
               <h4 data-aos="fade-up" data-aos-delay="400">Redes Sociales</h4>
               <ul class="social-links">
                 <li data-aos="fade-up" data-aos-delay="450">
-                  <a href="https://wa.me/573106035384?text=Gracias%20por%20contactarme,%20soy%20Nina%20Rojas%20Locutora%20Profesional.%20Por%20favor%20cuentame%20sobre%20tu%20proyecto%20para%20poder%20as*esorarte." target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                  <a href="https://wa.me/573106035384?text=Gracias%20por%20contactarme,%20soy%20Nina%20Rojas%20Locutora%20Profesional.%20Por%20favor%20cuentame%20sobre%20tu%20proyecto%20para%20poder%20asesorarte." target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
                     <MessageCircle class="social-icon" />
                     <span>WhatsApp</span>
                   </a>
