@@ -322,7 +322,6 @@ declare global {
     AOS: any;
   }
 }
-import { useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
 import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
