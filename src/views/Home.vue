@@ -28,10 +28,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ active: mobileMenuOpen }" role="navigation" aria-label="Mobile Navigation">
       <div class="mobile-nav-links">
-        <a href="#inicio" @click="scrollToMobile('inicio')">Inicio</a>
-        <a href="#servicios" @click="scrollToMobile('servicios')">Servicios</a>
-        <a href="#portfolio" @click="scrollToMobile('portfolio')">Portfolio</a>
-        <a href="#contacto" @click="scrollToMobile('contacto')">Contacto</a>
+        <a href="#inicio" @click="(e) => { e.preventDefault(); scrollTo('inicio'); }">Inicio</a>
+        <a href="#servicios" @click="(e) => { e.preventDefault(); scrollTo('servicios'); }">Servicios</a>
+        <a href="#portfolio" @click="(e) => { e.preventDefault(); scrollTo('portfolio'); }">Portfolio</a>
+        <a href="#contacto" @click="(e) => { e.preventDefault(); scrollTo('contacto'); }">Contacto</a>
       </div>
     </div>
 
