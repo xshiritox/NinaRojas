@@ -275,7 +275,7 @@
             </div>
 
             <div class="footer-section" data-aos="fade-up" data-aos-delay="350">
-              <h4 data-aos="fade-up" data-aos-delay="400">Síguenos en redes</h4>
+              <h4 data-aos="fade-up" data-aos-delay="400">Redes Sociales</h4>
               <ul class="social-links">
                 <li data-aos="fade-up" data-aos-delay="450">
                   <a href="https://wa.me/573106035384" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
@@ -302,7 +302,7 @@
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
           <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <router-link to="/admin/login" class="admin-link-text" @click="(e: Event) => { e.preventDefault(); $router.push('/admin/login'); }">Admin</router-link>
+            <router-link to="/admin/login" class="admin-link-text">Admin</router-link>
           </div>
         </div>
       </div>
@@ -620,7 +620,7 @@ onUnmounted(() => {
   background: rgba(19, 19, 19, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  padding: 12px 0;
+  padding: 6px 0;
   transition: all 0.3s ease;
 }
 
