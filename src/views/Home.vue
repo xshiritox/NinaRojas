@@ -680,7 +680,7 @@ onUnmounted(() => {
 }
 
 .menu-toggle {
-  display: flex; /* Mostrar el botón del menú en móviles por defecto */
+  display: none; /* Oculto por defecto */
   flex-direction: column;
   background: none;
   border: none;
@@ -1433,7 +1433,7 @@ onUnmounted(() => {
   }
   
   .menu-toggle {
-    display: flex;
+    display: flex; /* Solo visible en móviles */
     position: fixed;
     top: 20px;
     right: 20px;
@@ -1454,11 +1454,19 @@ onUnmounted(() => {
   
   .logo-text {
     font-size: 18px;
-    line-height: 1.2;
+    line-height: 1;
+    margin-bottom: 2px;
   }
   
   .logo-subtitle {
     font-size: 14px;
+    line-height: 1.2;
+  }
+  
+  .logo-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .mobile-menu {
