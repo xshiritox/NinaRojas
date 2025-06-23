@@ -106,6 +106,7 @@
             :key="service.id"
             data-aos="fade-up"
             :data-aos-delay="200 + (index * 100)"
+            @click="solicitarServicio(service)"
           >
             <div class="service-icon" data-aos="zoom-in" :data-aos-delay="300 + (index * 100)">
               <img :src="`${publicPath}servicio.WebP`" :alt="service.title" class="service-icon-img" />
@@ -185,14 +186,14 @@
               <Mail class="contact-icon" />
               <div>
                 <span class="contact-label">Email</span>
-                <span class="contact-value">ninaymarco3@gmail.com</span>
+                <a href="mailto:ninaymarco3@gmail.com" class="contact-value">ninaymarco3@gmail.com</a>
               </div>
             </div>
             <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
               <Phone class="contact-icon" />
               <div>
                 <span class="contact-label">Teléfono</span>
-                <span class="contact-value">+57 310 6035384</span>
+                <a href="tel:+573106035384" class="contact-value">+57 310 6035384</a>
               </div>
             </div>
             <div class="contact-item" data-aos="fade-right" data-aos-delay="350">
@@ -336,6 +337,17 @@ const publicPath = import.meta.env.BASE_URL;
 
 // Initialize toast
 const toast = useToast()
+
+// Función para manejar la solicitud de servicio
+const solicitarServicio = (service: Service) => {
+  const mensaje = `¡Hola Nina Rojas! Estoy interesado en el servicio: ${service.title} ¿Podrías darme más información?`
+  
+  if (confirm(`¿Deseas solicitar el servicio: ${service.title}?`)) {
+    const telefono = '573106035384' // Tu número de WhatsApp
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`
+    window.open(url, '_blank')
+  }
+}
 
 // Interfaces
 interface Service {
