@@ -43,8 +43,16 @@
       <div class="hero-background"></div>
       <div class="container">
         <div class="hero-content">
-          <div class="hero-logo" data-aos="fade-down" data-aos-delay="100">
-            <img :src="`${publicPath}logo.WebP`" alt="Nina Rojas - Locutora Profesional" class="hero-logo-img" loading="lazy" />
+          <div class="hero-logo" data-aos="fade-down" data-aos-duration="500" data-aos-delay="100">
+            <img 
+              :src="`${publicPath}logo.WebP`" 
+              alt="Nina Rojas - Locutora Profesional" 
+              class="hero-logo-img" 
+              loading="eager"
+              width="100"
+              height="100"
+              :style="{'--bg-color': '#FFD700'}"
+            />
           </div>
           <div class="hero-title" data-aos="fade-up" data-aos-delay="200">
             <h2 class="highlight" data-aos="fade-up" data-aos-delay="300">Nina Rojas</h2>
@@ -297,7 +305,7 @@
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
           <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <router-link to="/admin/login" class="admin-link-text" @click.prevent="navigateToAdmin">Admin</router-link>
+            <a href="/admin/login" class="admin-link-text">Admin</a>
           </div>
         </div>
       </div>
@@ -308,6 +316,12 @@
 <script setup lang="ts">
 // Vue and external dependencies
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+declare global {
+  interface Window {
+    AOS: any;
+  }
+}
 import { useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
@@ -501,12 +515,7 @@ let servicesUnsubscribe: (() => void) | null = null;
 let portfolioUnsubscribe: (() => void) | null = null;
 let heroUnsubscribe: (() => void) | null = null;
 
-// Navegación mejorada para móviles
-const navigateToAdmin = () => {
-  // Forzar la navegación programáticamente
-  const router = useRouter();
-  router.push('/admin/login');
-};
+
 let contactUnsubscribe: (() => void) | null = null;
 
 // Función para cargar datos en tiempo real
@@ -566,9 +575,34 @@ const loadRealtimeData = () => {
   );
 };
 
-// Cargar datos al montar el componente
+// Cargar AOS cuando el componente se monte
 onMounted(() => {
   loadRealtimeData();
+  
+  // Cargar AOS de forma diferida
+  const loadAOS = () => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/aos@next/dist/aos.js';
+    script.async = true;
+    script.onload = () => {
+      window.AOS.init({
+        duration: 600,
+        once: true,
+        easing: 'ease-in-out',
+        offset: 20,
+        delay: 100
+      });
+    };
+    document.head.appendChild(script);
+  };
+
+  // Cargar AOS cuando el usuario esté inactivo
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(loadAOS, { timeout: 2000 });
+  } else {
+    // Fallback para navegadores que no soportan requestIdleCallback
+    setTimeout(loadAOS, 0);
+  }
 });
 
 // Limpiar suscripciones al desmontar el componente
@@ -1455,7 +1489,7 @@ onUnmounted(() => {
   .logo-text {
     font-size: 18px;
     line-height: 1;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
   
   .logo-subtitle {
@@ -1510,6 +1544,15 @@ onUnmounted(() => {
     width: 100px;
     height: 100px;
     margin-top: 20px;
+    background-color: var(--bg-color, #FFD700);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-logo-img:hover {
+    transform: scale(1.05);
   }
   
   .highlight {
