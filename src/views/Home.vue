@@ -1597,14 +1597,14 @@ onUnmounted(() => {
   }
   
   .hero-logo-img {
-    width: 200px;
-    height: 200px;
+    width: 200px !important;
+    height: 200px !important;
     margin-top: 20px;
-    background-color: var(--bg-color, #FFD700);
-    border-radius: 50%;
-    padding: 5px;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    transition: transform 0.3s ease;
+    background-color: var(--bg-color, #FFD700) !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7) !important;
+    transition: transform 0.3s ease !important;
   }
   
   .hero-logo-img:hover {
