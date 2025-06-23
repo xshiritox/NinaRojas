@@ -176,7 +176,7 @@
         <div class="section-header" data-aos="fade-up">
           <h1 class="section-title">Contrata una Locutora Profesional</h1>
           <div class="section-divider" data-aos="fade-up" data-aos-delay="100"></div>
-          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">¿Tienes un proyecto en mente? Hablemos</p>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">¿Tienes un proyecto en mente? ¡Hablemos!</p>
         </div>
         <div class="contact-content">
           <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
@@ -278,7 +278,7 @@
               <h4 data-aos="fade-up" data-aos-delay="400">Redes Sociales</h4>
               <ul class="social-links">
                 <li data-aos="fade-up" data-aos-delay="450">
-                  <a href="https://wa.me/573106035384" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                  <a href="https://wa.me/573106035384?text=Gracias%20por%20contactarme,%20soy%20Nina%20Rojas%20Locutora%20Profesional.%20Por%20favor%20cuentame%20sobre%20tu%20proyecto%20para%20poder%20acesorarte" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
                     <MessageCircle class="social-icon" />
                     <span>WhatsApp</span>
                   </a>
