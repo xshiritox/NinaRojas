@@ -5,9 +5,6 @@
       <div class="container">
         <div class="nav-content">
           <div class="logo">
-            <div class="logo-image">
-              <img :src="`${publicPath}logo.WebP`" alt="Nina Rojas Logo" class="logo-img" />
-            </div>
             <div class="logo-text-container">
               <h1 class="logo-text">Nina Rojas - Locutora Profesional</h1>
               <p class="logo-subtitle">Voz Profesional para Publicidad y Medios</p>
@@ -49,8 +46,8 @@
               alt="Nina Rojas - Locutora Profesional" 
               class="hero-logo-img" 
               loading="eager"
-              width="200"
-              height="200"
+              width="160"
+              height="160"
               :style="{'--bg-color': '#FFD700'}"
             />
           </div>
@@ -636,48 +633,30 @@ onUnmounted(() => {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.logo-image {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 10px;
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-  animation: logoGlow 3s ease-in-out infinite alternate;
-}
-
-.logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .logo-text-container {
   display: flex;
   flex-direction: column;
+  padding: 8px 0;
 }
 
 .logo-text {
   color: #FFD700;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1;
+  white-space: nowrap;
+  margin-bottom: 0;
 }
 
 .logo-subtitle {
   color: #C0C0C0;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 300;
-  margin-top: 2px;
+  margin-top: 0;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .nav-links {
@@ -813,8 +792,8 @@ onUnmounted(() => {
 }
 
 .hero-logo-img {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   border: 4px solid #FFD700;
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
@@ -1597,8 +1576,8 @@ onUnmounted(() => {
   }
   
   .hero-logo-img {
-    width: 200px !important;
-    height: 200px !important;
+    width: 160px !important;
+    height: 160px !important;
     margin-top: 20px;
     background-color: var(--bg-color, #FFD700) !important;
     border-radius: 50% !important;
