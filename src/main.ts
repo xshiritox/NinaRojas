@@ -34,17 +34,8 @@ AOS.init({
   mirror: false
 })
 
-const app = createApp(App)
-const head = createHead()
-
-app.use(head)
-const pinia = createPinia()
-
-app.use(pinia)
-app.use(router)
 // Inicializar Firebase
 auth.onAuthStateChanged(() => {
-  // Usuario autenticado o no
   console.log('Estado de autenticación actualizado')
 })
 
@@ -53,32 +44,33 @@ router.beforeEach(async (to, _from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const currentUser = auth.currentUser
 
-  // Si el usuario ya está autenticado y va a la página de login
   if (to.path === '/admin/login' && currentUser) {
     next('/admin')
     return
   }
 
-  // Si la ruta requiere autenticación y el usuario no está autenticado
   if (requiresAuth && !currentUser) {
     next('/admin/login')
     return
   }
 
-  // En cualquier otro caso, continuar con la navegación
   next()
 })
 
+const app = createApp(App)
+const head = createHead()
+const pinia = createPinia()
+
+// Configuración de plugins
+app.use(head)
+app.use(pinia)
 app.use(router)
-// Configuración de notificaciones
 app.use(Toast, {
   position: POSITION.TOP_RIGHT,
   timeout: 5000,
   closeOnClick: true,
   pauseOnHover: true,
-  // Deshabilitar notificaciones de éxito
   filterBeforeCreate: (toast: any) => {
-    // Solo mostrar notificaciones de error
     return toast.type === 'error' ? toast : false;
   }
 })

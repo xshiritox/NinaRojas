@@ -260,12 +260,36 @@
                 <li data-aos="fade-up" data-aos-delay="450"><a href="#contacto" @click="scrollTo('contacto')">Contacto</a></li>
               </ul>
             </div>
-            <div class="footer-section" data-aos="fade-up" data-aos-delay="250">
-              <h4 data-aos="fade-up" data-aos-delay="300">Contacto</h4>
+            <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+              <h4 data-aos="fade-up" data-aos-delay="250">Contacto</h4>
               <ul>
-                <li data-aos="fade-up" data-aos-delay="350">ninaymarco3@gmail.com</li>
-                <li data-aos="fade-up" data-aos-delay="400">+57 310 6035384</li>
-                <li data-aos="fade-up" data-aos-delay="450">Colombia</li>
+                <li data-aos="fade-up" data-aos-delay="300">ninaymarco3@gmail.com</li>
+                <li data-aos="fade-up" data-aos-delay="350">+57 310 6035384</li>
+                <li data-aos="fade-up" data-aos-delay="400">Colombia</li>
+              </ul>
+            </div>
+
+            <div class="footer-section" data-aos="fade-up" data-aos-delay="350">
+              <h4 data-aos="fade-up" data-aos-delay="400">Síguenos en redes</h4>
+              <ul class="social-links">
+                <li data-aos="fade-up" data-aos-delay="450">
+                  <a href="https://wa.me/573106035384" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                    <MessageCircle class="social-icon" />
+                    <span>WhatsApp</span>
+                  </a>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                  <a href="https://facebook.com/tupagina" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                    <Facebook class="social-icon" />
+                    <span>Facebook</span>
+                  </a>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="550">
+                  <a href="https://instagram.com/tucuenta" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                    <Instagram class="social-icon" />
+                    <span>Instagram</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -289,7 +313,8 @@ import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
 import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
 import { 
-  Mail, Phone, MapPin, Clock, Play, Pause, Send
+  Mail, Phone, MapPin, Clock, Play, Pause, Send,
+  MessageCircle, Facebook, Instagram, Mic
 } from 'lucide-vue-next'
 import { useToast } from 'vue-toastification'
 
@@ -1276,7 +1301,59 @@ onUnmounted(() => {
 .footer-links {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateX(5px);
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.whatsapp { background: rgba(37, 211, 102, 0.1); color: #25D366; }
+.whatsapp:hover { background: rgba(37, 211, 102, 0.2); }
+
+.facebook { background: rgba(24, 119, 242, 0.1); color: #1877F2; }
+.facebook:hover { background: rgba(24, 119, 242, 0.2); }
+
+.instagram { 
+  background: linear-gradient(45deg, rgba(131, 58, 180, 0.1), rgba(253, 29, 29, 0.1), rgba(252, 176, 69, 0.1)); 
+  color: #E1306C; 
+}
+.instagram:hover { 
+  background: linear-gradient(45deg, rgba(131, 58, 180, 0.2), rgba(253, 29, 29, 0.2), rgba(252, 176, 69, 0.2));
 }
 
 .footer-section h4 {
