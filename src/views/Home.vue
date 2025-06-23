@@ -284,13 +284,13 @@
                   </a>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="500">
-                  <a href="https://facebook.com/tupagina" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                  <a href="https://www.facebook.com/jeimmyp.rojas.1" target="_blank" rel="noopener noreferrer" class="social-link facebook">
                     <Facebook class="social-icon" />
                     <span>Facebook</span>
                   </a>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="550">
-                  <a href="https://instagram.com/tucuenta" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                  <a href="https://ninarojas.netlify.app" target="_blank" rel="noopener noreferrer" class="social-link instagram">
                     <Instagram class="social-icon" />
                     <span>Instagram</span>
                   </a>
@@ -302,7 +302,7 @@
         <div class="footer-bottom" data-aos="fade-up" data-aos-delay="300">
           <p data-aos="fade-up" data-aos-delay="350">&copy; 2025 Nina Rojas. Todos los derechos reservados.</p>
           <div class="admin-link" data-aos="fade-up" data-aos-delay="400">
-            <router-link to="/admin/login" class="admin-link-text">Admin</router-link>
+            <button @click="goToAdmin" class="admin-button">Admin</button>
           </div>
         </div>
       </div>
@@ -435,17 +435,19 @@ const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
-const scrollTo = (elementId: string) => {
-  const element = document.getElementById(elementId)
+const scrollTo = (id: string) => {
+  const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
+    element.scrollIntoView({ behavior: 'smooth' });
+    if (mobileMenuOpen.value) {
+      mobileMenuOpen.value = false;
+    }
   }
-}
+};
 
-const scrollToMobile = (elementId: string) => {
-  scrollTo(elementId)
-  mobileMenuOpen.value = false
-}
+const goToAdmin = () => {
+  window.location.href = '/admin/login';
+};
 
 const togglePlay = async (demoId: string) => {
   const audio = document.querySelector(`audio[src*="${demoId}"]`) as HTMLAudioElement
@@ -1500,15 +1502,25 @@ onUnmounted(() => {
   color: #C0C0C0;
 }
 
-.admin-link-text {
-  color: #C0C0C0;
-  text-decoration: none;
+.admin-button {
+  background: none;
+  border: 1px solid #FFD700;
+  color: #FFD700;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-.admin-link-text:hover {
-  color: #FFD700;
+.admin-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.admin-button:active {
+  transform: translateY(0);
 }
 
 /* Responsive Design */
