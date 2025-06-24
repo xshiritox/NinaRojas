@@ -251,15 +251,6 @@
                 <li data-aos="fade-up" data-aos-delay="450"><a href="#contacto" @click="scrollTo('contacto')">Contacto</a></li>
               </ul>
             </div>
-            <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
-              <h4 data-aos="fade-up" data-aos-delay="250">Contacto</h4>
-              <ul>
-                <li data-aos="fade-up" data-aos-delay="300">nrmaxpublicidad@gmail.com</li>
-                <li data-aos="fade-up" data-aos-delay="350">+57 310 6035384</li>
-                <li data-aos="fade-up" data-aos-delay="400">Colombia</li>
-              </ul>
-            </div>
-
             <div class="footer-section" data-aos="fade-up" data-aos-delay="350">
               <h4 data-aos="fade-up" data-aos-delay="400">Redes Sociales</h4>
               <ul class="social-links">
