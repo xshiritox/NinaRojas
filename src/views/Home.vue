@@ -285,7 +285,7 @@
                   </a>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="500">
-                  <a href="https://www.facebook.com/jeimmyp.rojas.1" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                  <a href="https://ninarojas.netlify.app" target="_blank" rel="noopener noreferrer" class="social-link facebook">
                     <Facebook class="social-icon" />
                     <span>Facebook</span>
                   </a>
