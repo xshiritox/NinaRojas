@@ -180,62 +180,47 @@
           <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">¿Tienes un proyecto en mente? ¡Hablemos!</p>
         </div>
         <div class="contact-content">
-          <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
-            <h2 class="contact-heading" data-aos="fade-right" data-aos-delay="250">Información de Contacto</h2>
-            <div class="contact-item" data-aos="fade-right" data-aos-delay="250">
-              <Mail class="contact-icon" />
-              <div>
-                <span class="contact-label">Email</span>
-                <a href="mailto:nrmaxpublicidad@gmail.com" class="contact-value">nrmaxpublicidad@gmail.com</a>
+          <div class="contact-card" data-aos="fade-up">
+            <h2 class="contact-heading">Información de Contacto</h2>
+            <div class="contact-grid">
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-icon-container">
+                  <Mail class="contact-icon" />
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:nrmaxpublicidad@gmail.com" class="contact-value">nrmaxpublicidad@gmail.com</a>
+                </div>
               </div>
-            </div>
-            <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
-              <Phone class="contact-icon" />
-              <div>
-                <span class="contact-label">Teléfono</span>
-                <a href="tel:+573106035384" class="contact-value">+57 310 6035384</a>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="contact-icon-container">
+                  <Phone class="contact-icon" />
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">Teléfono</span>
+                  <a href="tel:+573106035384" class="contact-value">+57 310 6035384</a>
+                </div>
               </div>
-            </div>
-            <div class="contact-item" data-aos="fade-right" data-aos-delay="350">
-              <MapPin class="contact-icon" />
-              <div>
-                <span class="contact-label">Ubicación</span>
-                <span class="contact-value">Colombia</span>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-icon-container">
+                  <MapPin class="contact-icon" />
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">Ubicación</span>
+                  <span class="contact-value">Colombia</span>
+                </div>
               </div>
-            </div>
-            <div class="contact-item" data-aos="fade-right" data-aos-delay="400">
-              <Clock class="contact-icon" />
-              <div>
-                <span class="contact-label">Horario</span>
-                <span class="contact-value">Lun - Vie: 9:00 AM - 6:00 PM</span>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="contact-icon-container">
+                  <Clock class="contact-icon" />
+                </div>
+                <div class="contact-details">
+                  <span class="contact-label">Horario</span>
+                  <span class="contact-value">Lun - Vie: 9:00 AM - 6:00 PM</span>
+                </div>
               </div>
             </div>
           </div>
-          <form @submit.prevent="submitForm" class="contact-form" data-aos="fade-left" data-aos-delay="200">
-            <div class="form-group" data-aos="fade-left" data-aos-delay="250">
-              <label for="name">Nombre *</label>
-              <input type="text" id="name" v-model="form.name" required>
-            </div>
-            <div class="form-group" data-aos="fade-left" data-aos-delay="300">
-              <label for="email">Email *</label>
-              <input type="email" id="email" v-model="form.email" required>
-            </div>
-            <div class="form-group full-width" data-aos="fade-left" data-aos-delay="350">
-              <label for="message">Mensaje *</label>
-              <textarea id="message" v-model="form.message" rows="5" required></textarea>
-            </div>
-            <button 
-              type="submit" 
-              class="btn btn-primary" 
-              :disabled="submitting" 
-              aria-label="Enviar mensaje de contacto"
-              data-aos="fade-up" 
-              data-aos-delay="400"
-            >
-              <Send class="btn-icon" />
-              {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
-            </button>
-          </form>
         </div>
       </div>
     </section>
@@ -279,19 +264,19 @@
               <h4 data-aos="fade-up" data-aos-delay="400">Redes Sociales</h4>
               <ul class="social-links">
                 <li data-aos="fade-up" data-aos-delay="450">
-                  <a href="https://wa.me/573106035384?text=Gracias%20por%20contactarme,%20soy%20Nina%20Rojas%20Locutora%20Profesional.%20Por%20favor%20cuentame%20sobre%20tu%20proyecto%20para%20poder%20asesorarte." target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                  <a href="https://wa.me/573106035384" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
                     <MessageCircle class="social-icon" />
                     <span>WhatsApp</span>
                   </a>
                 </li>
-                <li data-aos="fade-up" data-aos-delay="500">
-                  <a href="https://ninarojas.netlify.app" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                <li data-aos="fade-up" data-aos-delay="500" class="disabled-social">
+                  <a href="javascript:void(0)" class="social-link facebook" style="pointer-events: none; opacity: 0.6; cursor: not-allowed;">
                     <Facebook class="social-icon" />
                     <span>Facebook</span>
                   </a>
                 </li>
-                <li data-aos="fade-up" data-aos-delay="550">
-                  <a href="https://ninarojas.netlify.app" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                <li data-aos="fade-up" data-aos-delay="550" class="disabled-social">
+                  <a href="javascript:void(0)" class="social-link instagram" style="pointer-events: none; opacity: 0.6; cursor: not-allowed;">
                     <Instagram class="social-icon" />
                     <span>Instagram</span>
                   </a>
@@ -347,16 +332,12 @@ import { useHead } from '@vueuse/head'
 import { db } from '../firebase/config'
 import { collection, query, onSnapshot, orderBy, doc } from 'firebase/firestore'
 import { 
-  Mail, Phone, MapPin, Clock, Play, Pause, Send,
-  MessageCircle, Facebook, Instagram, Mic
+  Mail, Phone, MapPin, Clock, Play, Pause,
+  MessageCircle, Facebook, Instagram 
 } from 'lucide-vue-next'
-import { useToast } from 'vue-toastification'
 
 // Base path for public assets
 const publicPath = import.meta.env.BASE_URL;
-
-// Initialize toast
-const toast = useToast()
 
 // Variables para almacenar las funciones de limpieza
 let servicesUnsubscribe: (() => void) | null = null;
@@ -469,12 +450,6 @@ const contactInfo = ref<any>({
 const mobileMenuOpen = ref(false)
 const activeCategory = ref('Todos')
 const playingAudios = ref<Set<string>>(new Set())
-const form = ref({
-  name: '',
-  email: '',
-  message: ''
-})
-const submitting = ref(false)
 
 const categories = computed(() => {
   const cats = ['Todos', ...new Set(audioDemos.value.map(demo => demo.category))]
@@ -546,26 +521,6 @@ const getProgress = (demoId: string) => {
   const audio = document.querySelector(`audio[src*="${demoId}"]`) as HTMLAudioElement;
   if (!audio) return 0;
   return audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-}
-
-const submitForm = async () => {
-  submitting.value = true
-  try {
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    toast.success('Mensaje enviado exitosamente. Te contactaré pronto.')
-    
-    // Reset form
-    form.value = {
-      name: '',
-      email: '',
-      message: ''
-    }
-  } catch (error) {
-    toast.error('Error al enviar el mensaje. Inténtalo de nuevo.')
-  } finally {
-    submitting.value = false
-  }
 }
 
 // Variables para almacenar las funciones de limpieza (declaradas arriba)
@@ -1422,44 +1377,165 @@ onUnmounted(() => {
 
 /* Contact Section */
 .contact-content {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-.contact-info h3 {
+.contact-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid #333;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-heading {
+  font-size: 1.5rem;
   color: #FFD700;
-  font-size: 1.8rem;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto 0;
+  justify-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .contact-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  text-align: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon-container {
+  background: rgba(255, 215, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .contact-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   color: #FFD700;
 }
 
-.contact-item div {
+.contact-details {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .contact-label {
-  color: #C0C0C0;
   font-size: 0.9rem;
-  margin-bottom: 2px;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .contact-value {
+  font-size: 1.05rem;
   color: #fff;
-  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 400;
+  word-break: break-word;
+}
+
+.contact-value:hover {
+  color: #FFD700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 600px;
+  }
+  
+  .contact-card {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .contact-item {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+  }
+}
+  
+
+@media (max-width: 576px) {
+  .contact-item {
+    padding: 1rem;
+  }
+  
+  .contact-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .contact-label {
+    font-size: 0.8rem;
+  }
+  
+  .contact-value {
+    font-size: 0.95rem;
+  }
 }
 
 .contact-form {
