@@ -1404,7 +1404,7 @@ onUnmounted(() => {
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  gap: 1.5rem;
   width: 100%;
   max-width: 900px;
   margin: 2rem auto 0;
@@ -1489,9 +1489,9 @@ onUnmounted(() => {
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    max-width: 600px;
+    max-width: 100%;
   }
   
   .contact-card {
@@ -1501,18 +1501,6 @@ onUnmounted(() => {
   .contact-item {
     max-width: 100%;
     padding: 1.5rem 1rem;
-  }
-}
-  
-
-@media (max-width: 576px) {
-  .contact-item {
-    padding: 1rem;
-  }
-  
-  .contact-icon-container {
-    width: 50px;
-    height: 50px;
   }
   
   .contact-icon {
@@ -1526,6 +1514,38 @@ onUnmounted(() => {
   
   .contact-value {
     font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .contact-item {
+    padding: 1rem 0.5rem;
+    max-width: 100%;
+  }
+  
+  .contact-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .contact-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .contact-value {
+    font-size: 0.8rem;
   }
 }
 
