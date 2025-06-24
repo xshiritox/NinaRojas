@@ -186,7 +186,7 @@
               <Mail class="contact-icon" />
               <div>
                 <span class="contact-label">Email</span>
-                <a href="mailto:ninaymarco3@gmail.com" class="contact-value">ninaymarco3@gmail.com</a>
+                <a href="mailto:nrmaxpublicidad@gmail.com" class="contact-value">nrmaxpublicidad@gmail.com</a>
               </div>
             </div>
             <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
@@ -269,7 +269,7 @@
             <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
               <h4 data-aos="fade-up" data-aos-delay="250">Contacto</h4>
               <ul>
-                <li data-aos="fade-up" data-aos-delay="300">ninaymarco3@gmail.com</li>
+                <li data-aos="fade-up" data-aos-delay="300">nrmaxpublicidad@gmail.com</li>
                 <li data-aos="fade-up" data-aos-delay="350">+57 310 6035384</li>
                 <li data-aos="fade-up" data-aos-delay="400">Colombia</li>
               </ul>
