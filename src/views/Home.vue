@@ -385,7 +385,8 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Nina Rojas - Locutora Profesional",
-  "description": "Servicios profesionales de locución para publicidad, radio, televisión y más. Voz profesional con amplia experiencia en el sector.",
+  "description": "Nina Rojas - Locutora profesional con amplia experiencia en locución comercial, publicidad, radio y doblaje. Voz profesional para proyectos audiovisuales.",
+  "keywords": "Nina Rojas, locutora profesional, voz en off, locución comercial, locución publicitaria, doblaje, voz profesional, locución para radio, locución para publicidad, locutora colombiana, locución de calidad, voz comercial, locución en español, locución profesional en Colombia",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "CO",
