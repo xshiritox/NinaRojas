@@ -29,6 +29,25 @@
     <meta property="og:type" content="website" />
     <link rel="canonical" href="https://ninarojas.netlify.app/" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TB5C5WHXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Configuración principal con ID de medición
+      gtag('config', 'G-8TB5C5WHXD');
+      
+      // Configuración adicional con ID de propiedad
+      gtag('config', '494065640', {
+        'send_page_view': true,
+        'anonymize_ip': true,
+        'allow_google_signals': true,
+        'allow_ad_personalization_signals': true
+      });
+    </script>
+
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="NinaRojas - Locutora Profesional" />
@@ -39,6 +58,10 @@
     <meta name="google-site-verification" content="3vJI-_7Qy5Pk6Iekh9I6Kw8L_12AfcH5xtje8C2upVc" />
   </head>
   <body>
+    <!-- Google Analytics (noscript) -->
+    <noscript>
+      <img src="https://analytics.google.com/analytics/api/gif?ec=default&ea=pageview&el=NoScript&t=pageview&v=2&tid=G-8TB5C5WHXD&_u=c2hvd1xudWxs&_v=2&a=494065640" style="display:none;" alt="" />
+    </noscript>
     <div id="app"></div>
     <!-- Scripts con carga diferida -->
     <script type="module" src="/src/main.ts" defer></script>
