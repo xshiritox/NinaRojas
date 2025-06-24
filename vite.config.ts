@@ -6,6 +6,53 @@ import { dirname, resolve } from 'node:path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+// Configuración de CSP
+const cspDirectives = {
+  'default-src': ["'self'"],
+  'script-src': [
+    "'self'",
+    "'unsafe-inline'",
+    "'unsafe-eval'",
+    "https://*.googletagmanager.com",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://analytics.google.com",
+    "https://*.firebaseio.com",
+    "https://www.googleapis.com",
+    "https://www.gstatic.com"
+  ],
+  'img-src': [
+    "'self'",
+    "data:",
+    "https://*.google-analytics.com",
+    "https://*.google.com",
+    "https://*.gstatic.com",
+    "https://*.googleapis.com"
+  ],
+  'connect-src': [
+    "'self'",
+    "https://*.google-analytics.com",
+    "https://*.analytics.google.com",
+    "https://*.googletagmanager.com",
+    "https://*.firebaseio.com",
+    "https://*.googleapis.com"
+  ],
+  'style-src': [
+    "'self'",
+    "'unsafe-inline'",
+    "https://fonts.googleapis.com"
+  ],
+  'font-src': [
+    "'self'",
+    "data:",
+    "https://fonts.gstatic.com"
+  ],
+  'frame-src': [
+    "'self'",
+    "https://www.googletagmanager.com"
+  ]
+}
+
 export default defineConfig({
   base: '/',
   plugins: [vue()],
@@ -23,7 +70,12 @@ export default defineConfig({
     hmr: true,
     port: 3000,
     open: true,
-    cors: true
+    cors: true,
+    headers: {
+      'Content-Security-Policy': Object.entries(cspDirectives)
+        .map(([key, values]) => `${key} ${values.join(' ')}`)
+        .join('; ')
+    }
   },
   build: {
     outDir: 'dist',
